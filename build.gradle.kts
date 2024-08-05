@@ -1,18 +1,10 @@
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-
 plugins {
     id("maven-publish")
     id("java")
 }
 
-val versionPrefix = "SNAPSHOT"
-
-val currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.M.d.HHmm"))!!
-val versionNumber = "${currentDateTime}-${versionPrefix}"
-
 group = "com.infinitehorizons"
-version = versionNumber
+version = "1.1.1-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -40,6 +32,11 @@ dependencies {
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
 
+    // JDA: Discord API
+    implementation("net.dv8tion:JDA:5.0.1")
+
+    implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
+
     // Junit 5: Testing
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.0-RC1")
@@ -64,7 +61,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "com.infinitehorizons"
             artifactId = "shared"
-            version = versionNumber
+            version = "1.1.1-SNAPSHOT"
             from(components.getByName("java"))
         }
     }
