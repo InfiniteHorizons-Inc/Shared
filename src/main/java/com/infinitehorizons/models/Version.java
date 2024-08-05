@@ -7,6 +7,11 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Represents a software version following the semantic versioning convention.
+ * <p>
+ * A version is represented by a major, minor, and patch number, optionally followed by a build identifier.
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,9 +24,18 @@ public class Version implements Comparable<Version> {
     private int major;
     private int minor;
     private int patch;
-
     private String build;
 
+    /**
+     * Creates a new {@code Version} instance with the specified major, minor, patch, and build components.
+     *
+     * @param major the major version number.
+     * @param minor the minor version number.
+     * @param patch the patch version number.
+     * @param build the build identifier, which must be a positive integer or "dev".
+     * @return a new {@code Version} instance.
+     * @throws IllegalArgumentException if the build identifier is not a positive integer or "dev".
+     */
     public static Version of(int major, int minor, int patch, String build) {
         if (build != null) {
             if (!Regex.POSITIVE_INTEGER_REGEX.matcher(build).matches() || !build.equalsIgnoreCase("dev")) {
@@ -31,18 +45,46 @@ public class Version implements Comparable<Version> {
         return new Version(Math.abs(major), Math.abs(minor), Math.abs(patch), build);
     }
 
+    /**
+     * Creates a new {@code Version} instance with the specified major, minor, and patch components.
+     *
+     * @param major the major version number.
+     * @param minor the minor version number.
+     * @param patch the patch version number.
+     * @return a new {@code Version} instance.
+     */
     public static Version of(int major, int minor, int patch) {
         return new Version(Math.abs(major), Math.abs(minor), Math.abs(patch), null);
     }
 
+    /**
+     * Creates a new {@code Version} instance with the specified major and minor components.
+     *
+     * @param major the major version number.
+     * @param minor the minor version number.
+     * @return a new {@code Version} instance.
+     */
     public static Version of(int major, int minor) {
         return new Version(Math.abs(major), Math.abs(minor), 0, null);
     }
 
+    /**
+     * Creates a new {@code Version} instance with the specified major component.
+     *
+     * @param major the major version number.
+     * @return a new {@code Version} instance.
+     */
     public static Version of(int major) {
         return new Version(Math.abs(major), 0, 0, null);
     }
 
+    /**
+     * Parses a version string into a {@code Version} instance.
+     *
+     * @param versionToParse the version string to parse.
+     * @return a new {@code Version} instance parsed from the string.
+     * @throws IllegalArgumentException if the version string is in the wrong format.
+     */
     public static Version parseVersion(String versionToParse) {
         Matcher matcher = VERSION_REGEX.matcher(versionToParse);
         if (matcher.matches()) {
@@ -55,11 +97,22 @@ public class Version implements Comparable<Version> {
         }
     }
 
+    /**
+     * Returns a string representation of this version in the format "major.minor.patch_build".
+     *
+     * @return the string representation of this version.
+     */
     @Override
     public String toString() {
         return major + "." + minor + "." + patch + (build == null ? "" : "_" + build);
     }
 
+    /**
+     * Compares this version with the specified object for equality.
+     *
+     * @param obj the object to compare.
+     * @return {@code true} if the specified object is equal to this version, {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Version) {
@@ -73,6 +126,12 @@ public class Version implements Comparable<Version> {
         }
     }
 
+    /**
+     * Compares this version to another version.
+     *
+     * @param that the other version to compare to.
+     * @return a negative integer, zero, or a positive integer as this version is less than, equal to, or greater than the specified version.
+     */
     @Override
     public int compareTo(Version that) {
 
@@ -97,6 +156,11 @@ public class Version implements Comparable<Version> {
         return 0;
     }
 
+    /**
+     * Returns the hash code for this version.
+     *
+     * @return the hash code value for this version.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(major, minor, patch, build);
