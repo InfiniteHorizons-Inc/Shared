@@ -45,3 +45,4 @@ bin/
 ### Project ###
 aplication.properties
 settings.xml
+gradle.properties

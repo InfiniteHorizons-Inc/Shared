@@ -2,13 +2,13 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id("maven-publish")
+    `maven-publish`
     id("java")
 }
 
 val versionPrefix = "SNAPSHOT"
 
-val currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.M.d"))!!
+val currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.M.d.HHmm"))!!
 val versionNumber = "${currentDateTime}-${versionPrefix}"
 
 group = "com.infinitehorizons"
@@ -65,8 +65,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/InfiniteHorizons-Inc/Shared")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
     }
