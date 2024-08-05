@@ -75,7 +75,7 @@ publishing {
         }
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/Maicol-19ty/Shared")
+            url = uri("https://maven.pkg.github.com/InfiniteHorizons-Inc/Shared")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("JAVA_TOKEN")
