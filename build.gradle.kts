@@ -77,8 +77,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Maicol-19ty/Shared")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("JAVA_NAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("JAVA_TOKEN")
             }
         }
     }
