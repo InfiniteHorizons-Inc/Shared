@@ -43,6 +43,6 @@ bin/
 .DS_Store
 
 ### Project ###
-aplication.properties
+config/aplication.properties
 settings.xml
 gradle.properties
