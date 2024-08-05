@@ -2,7 +2,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 plugins {
-    `maven-publish`
+    id("maven-publish")
     id("java")
 }
 
@@ -60,23 +60,39 @@ dependencies {
 }
 
 publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.infinitehorizons"
+            artifactId = "shared"
+            version = versionNumber
+            from(components.getByName("java"))
+        }
+    }
     repositories {
         maven {
+            name = "local"
+            url = uri("${System.getProperty("user.home")}/.m2/repository")
+        }
+        maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/InfiniteHorizons-Inc/Shared")
+            url = uri("https://maven.pkg.github.com/Maicol-19ty/Shared")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
     }
-    publications {
-        register<MavenPublication>("gpr") {
-            from(components["java"])
-        }
-    }
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.withType<AbstractPublishToMaven> {
+    doLast {
+        println("Publication released:")
+        println("Group: ${publication.groupId}")
+        println("Artifact ID: ${publication.artifactId}")
+        println("Version: ${publication.version}")
+    }
 }
