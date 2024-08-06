@@ -1,6 +1,6 @@
 package com.infinitehorizons.commands;
 
-import com.infinitehorizons.utils.Checks;
+import com.infinitehorizons.utils.ChecksUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,7 +41,7 @@ public abstract class ApplicationCommand<E extends GenericCommandInteractionEven
      * @throws IllegalArgumentException if the command data is null.
      */
     public final T getCommandData() {
-        Checks.notNull(data, "Command data");
+        ChecksUtils.notNull(data, "Command data");
         return data;
     }
 }

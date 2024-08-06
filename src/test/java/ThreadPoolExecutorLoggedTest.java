@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 
 import java.util.concurrent.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -38,7 +37,7 @@ class ThreadPoolExecutorLoggedTest {
 
         executor.shutdown();
         try {
-            assertEquals(true, executor.awaitTermination(1, TimeUnit.SECONDS), "Executor should terminate successfully.");
+            assertTrue(executor.awaitTermination(1, TimeUnit.SECONDS), "Executor should terminate successfully.");
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

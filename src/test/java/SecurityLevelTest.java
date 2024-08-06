@@ -1,4 +1,4 @@
-import com.infinitehorizons.models.SecurityLevel;
+import com.infinitehorizons.enums.SecurityLevel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

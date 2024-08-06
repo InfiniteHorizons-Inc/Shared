@@ -1,4 +1,4 @@
-package com.infinitehorizons.models;
+package com.infinitehorizons.enums;
 
 /**
  * Enum representing different security levels for user roles.

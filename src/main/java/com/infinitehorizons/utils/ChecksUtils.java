@@ -12,7 +12,7 @@ import java.lang.reflect.Constructor;
  *
  * @since v0.0.1-SNAPSHOT
  */
-public class Checks {
+public class ChecksUtils {
 
     /**
      * Checks if the given base class implements the specified interface or class.

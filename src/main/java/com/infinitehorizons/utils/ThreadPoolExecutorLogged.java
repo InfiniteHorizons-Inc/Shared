@@ -55,7 +55,7 @@ public class ThreadPoolExecutorLogged extends ThreadPoolExecutor {
         super.afterExecute(r, t);
         if (t == null && r instanceof Future<?>) {
             try {
-                Object result = ((Future<?>) r).get();
+                ((Future<?>) r).get();
             } catch (CancellationException e) {
                 t = e;
             } catch (ExecutionException e) {

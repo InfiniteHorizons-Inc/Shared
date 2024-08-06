@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.infinitehorizons"
-version = "1.1.1-SNAPSHOT"
+version = "2.2.2-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -61,7 +61,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "com.infinitehorizons"
             artifactId = "shared"
-            version = "1.1.1-SNAPSHOT"
+            version = "2.2.2-SNAPSHOT"
             from(components.getByName("java"))
         }
     }

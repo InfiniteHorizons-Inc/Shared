@@ -18,7 +18,9 @@ import org.slf4j.event.Level;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Logger {
 
-    private static final Logger log = (Logger) JDALogger.getLog(Logger.class);
+    static {
+        JDALogger.getLog(Logger.class);
+    }
 
     @Getter
     @Setter

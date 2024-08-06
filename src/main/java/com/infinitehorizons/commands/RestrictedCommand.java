@@ -31,10 +31,10 @@ public abstract class RestrictedCommand {
     /**
      * Applies a manual cooldown for a specified user ID.
      * <p>
-     * <b>Note:</b> Command cooldowns do not persist between sessions.
+     * <b>Note:</b> Command cooldowns don't persist between sessions.
      *
      * @param userId  The ID of the user to apply the cooldown to.
-     * @param nextUse The {@link Instant} indicating when the command can be used again by the user.
+     * @param nextUse The {@link Instant} indicating when the user can use the command again.
      */
     public void applyCooldown(long userId, Instant nextUse) {
         COOLDOWN_CACHE.put(userId, new CooldownUtil(Instant.now(), nextUse));
@@ -58,7 +58,7 @@ public abstract class RestrictedCommand {
     /**
      * Determines if the specified user is currently under cooldown for this command.
      * <p>
-     * <b>Note:</b> Command cooldowns do not persist between sessions.
+     * <b>Note:</b> Command cooldowns don't persist between sessions.
      *
      * @param userId The ID of the user to check.
      * @return {@code true} if the command is on cooldown for the user, {@code false} otherwise.
