@@ -1,19 +1,14 @@
 package com.infinitehorizons.utils;
 
 import com.infinitehorizons.config.ConfigLoader;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * A custom {@link ThreadPoolExecutor} that logs unhandled exceptions in task execution.
@@ -115,4 +110,25 @@ public class ThreadPoolExecutorLogged extends ThreadPoolExecutor {
                 new LinkedBlockingQueue<>(),
                 threadFactory, logger);
     }
+
+    public static ScheduledExecutorService getDefaultPool(long id, ThreadFactory factory, boolean isDaemon) {
+        return Executors.newSingleThreadScheduledExecutor(factory == null ? new WebHookThreadFactory(id, isDaemon) : factory);
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor(force = true)
+    public static final class WebHookThreadFactory implements ThreadFactory {
+        private final long id;
+        private final boolean isDaemon;
+
+        @Override
+        public Thread newThread(@NotNull Runnable r) {
+            final Thread thread = new Thread(r, "Webhook-RateLimit Thread Webhook ID: " + id);
+            thread.setDaemon(isDaemon);
+            return thread;
+        }
+    }
+
 }

@@ -20,6 +20,24 @@ public final class SharedConstants {
     public static final String WRAPPER_OP_PREFIX;
     public static final String BOT_OP_PREFIX;
 
+    public static final int DISCORD_API_VERSION = 14;
+    public static final String VERSION_MAJOR = "@MAJOR@";
+    public static final String VERSION_MINOR = "@MINOR@";
+    public static final String VERSION_PATCH = "@PATCH@";
+    public static final String VERSION = "@VERSION@";
+    public static final String COMMIT = "@COMMIT@";
+
+    public static final int CROSSPOSTED            = 1 << 0;
+    public static final int IS_CROSSPOSTED         = 1 << 1;
+    public static final int SUPPRESS_EMBEDS        = 1 << 2;
+    public static final int SOURCE_MESSAGE_DELETED = 1 << 3;
+    public static final int URGENT                 = 1 << 4;
+    public static final int HAS_THREAD             = 1 << 5;
+    public static final int EPHEMERAL              = 1 << 6;
+    public static final int LOADING                = 1 << 7;
+
+    public static final String DEBUG_INFO = "DISCORD_API_VERSION: " + DISCORD_API_VERSION + "\nVERSION: " + VERSION + "\nCOMMIT: " + COMMIT;
+
     static {
         ConfigLoader configLoader = new ConfigLoader("application.properties");
 

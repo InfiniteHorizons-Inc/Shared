@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.infinitehorizons"
-version = "2.2.2-SNAPSHOT"
+version = "3.2.2-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -35,7 +35,11 @@ dependencies {
     // JDA: Discord API
     implementation("net.dv8tion:JDA:5.0.1")
 
-    implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
+    implementation("com.discord4j:discord4j-core:3.3.0-RC1")
+
+    implementation("org.javacord:javacord:3.8.0")
+
+    implementation("org.json:json:20240303")
 
     // Junit 5: Testing
 
@@ -54,6 +58,8 @@ dependencies {
 
     testImplementation("org.mockito:mockito-junit-jupiter:5.12.0")
     testImplementation("org.mockito:mockito-core:5.12.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+
 }
 
 publishing {
@@ -84,6 +90,7 @@ publishing {
 tasks.test {
     useJUnitPlatform()
 }
+
 
 tasks.withType<AbstractPublishToMaven> {
     doLast {
